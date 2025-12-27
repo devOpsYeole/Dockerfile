@@ -19,7 +19,7 @@ pipeline {
         stage ("Docker_build") {
             steps {
                 sh '''
-                docker build -t $IMAGE_NAME:$TAG
+                docker build -t $IMAGE_NAME:$TAG .
                 '''
             }
 
@@ -29,7 +29,7 @@ pipeline {
             steps {
                 sh '''
                 docker rm -f $CONTAINER_NAME || true
-                docker run -d --name $CONTAINER_NAME -p 8090:80 $IMAGE_NAME:$TAG .
+                docker run -d --name $CONTAINER_NAME -p 8090:80 $IMAGE_NAME:$TAG
                 '''
             }
 
