@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME="Jenkins_nginx"
-        TAG="V1"
-        CONTAINER_NAME="Jenkins_nginx_container"
+        IMAGE_NAME="jenkins_nginx"
+        TAG="v1"
+        CONTAINER_NAME="jenkins_nginx_container"
 
     }
 
@@ -29,7 +29,7 @@ pipeline {
             steps {
                 sh '''
                 docker rm -f $CONTAINER_NAME || true
-                docker build -d --name $CONTAINER_NAME -p 8090:80 $IMAGE_NAME:$TAG
+                docker run -d --name $CONTAINER_NAME -p 8090:80 $IMAGE_NAME:$TAG .
                 '''
             }
 
